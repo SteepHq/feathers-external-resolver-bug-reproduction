@@ -21,10 +21,9 @@ export const messagesResolver = resolve<Messages, HookContext<MessagesService>>(
   {},
 )
 
-export const messagesExternalResolver = resolve<
-  Messages,
-  HookContext<MessagesService>
->({})
+export const messagesExternalResolver = resolve<Messages, HookContext<MessagesService>>({
+  text: async () => "overridden by external resolver",
+})
 
 // Schema for creating new entries
 export const messagesDataSchema = Type.Pick(messagesSchema, ["text"], {

@@ -8,4 +8,12 @@ describe("messages service", () => {
 
     assert.ok(service, "Registered the service")
   })
+
+  it("overrides with the result of the external resolver", async () => {
+    const aMessage = await app
+      .service("messages")
+      .create({ text: "set from create call" }, { provider: "rest" })
+
+    assert.equal(aMessage.text, "overridden by external resolver")
+  })
 })
